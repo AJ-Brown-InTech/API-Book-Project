@@ -3,31 +3,49 @@ async function getBooks() {
   return response.data.results.books;
 };
 
-let books = getBooks()
 
 // console.log()
 // Getting books from api & creating a new array to build html
 async function showBooks() {
-  let book = await getBooks(books.title)
-//   let bookGridHtml = book.map(x => getHtmlForBooks) // not sure if i need to add parameters for this function
-//   return bookGridHtml
-}
+  let books = await getBooks()
+  let bookGridHTMLArray = books.map(book => getHtmlForBook(book))
+  console.log(bookGridHTMLArray)
+  let booksGridHtml = bookGridHTMLArray.join("")
+  console.log(booksGridHtml) // not sure if i need to add parameters for this function
 
-console.log(showBooks())
+  document.getElementById('main-content').innerHTML = booksGridHtml
+
+}
+showBooks()
 /* Building a html document too build the book cards.
 the book image, Book rank - Book Title, Book description, Clicking on the book image or title should redirect to the Amazon page for the book. */
 
-function getHtmlForBooks() {
+function getHtmlForBook(book) {
 
   let bookSummaryHtml = `
  <article>
-    <a href ="${book.amazon_product_url}" target ="_blank" 
-        <img src ="${book.book_image}" alt="nytimesimg"/>
-            <span> ${book.title} - Rank Number:${book.rank}
+    <a href ="${
+    book.amazon_product_url
+  }" target ="_blank" 
+        <img src ="${
+    book.book_image
+  }" alt="nytimesimg"/>
+            <span> ${
+    book.title
+  } - Rank Number:${
+    book.rank
+  }
             </span>
         </a>
-    <p>${book.description}</p>
+    <p>${
+    book.description
+  }</p>
 </article>
  `
-  return bookSummaryHtml
-}
+  return bookSummaryHtml}{ /* <div class="card">
+              <img src="${animal.imageURL}" class="card-img-top">
+              <div class="card-body">
+                     <h5 class="card-title">${animal.name }</h5>
+                     <p class="card-text">sex: ${animal.sex} age: ${animal.age }</p>
+               </div>
+       </div> */}
