@@ -1,0 +1,30 @@
+img {
+  max-width: 325px;
+  max-height: 325%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  border-style: outset ;
+  
+}
+
+
+@media screen and (min-width: 600px) {
+  #main-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 16%
+  }
+} 
+
+.one {
+  text-decoration: none;
+  color: black;
+  
+}
+
+
+
+
